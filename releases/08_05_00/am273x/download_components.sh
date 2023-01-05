@@ -42,6 +42,7 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 THIS_DIR=$(dirname $(realpath $0))
 BASE_DIR=${THIS_DIR}/../../..
 COMPONENT_DIR=${BASE_DIR}/../..
+MCUPSDK_SETUP_DIR=${BASE_DIR}
 : ${mcu_plus_sdk_folder:="mcu_plus_sdk"}
 : ${install_dir:="${HOME}/ti"}
 : ${skip_nodejs:="false"}
@@ -67,7 +68,7 @@ else
     install_ccs     ${CCS_VERSION} ${install_dir}
     #install_clang   ${CGT_TI_ARM_CLANG_VERSION} ${clang_url_folder} ${clang_install_folder} ${clang_install_file} ${install_dir}
     install_syscfg  ${SYSCFG_VERSION} ${install_dir}
-    install_dsplib  ${DSPLIB_VERSION} ${mcu_plus_sdk_folder}/source
+    install_dsplib  ${DSPLIB_VERSION} ${mcu_plus_sdk_folder}/source ${MCUPSDK_SETUP_DIR}
     if [ "$skip_nodejs" == "false" ]; then
         install_nodejs  ${NODEJS_VERSION} ${mcu_plus_sdk_folder}
     fi

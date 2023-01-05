@@ -1,0 +1,156 @@
+diff --git a/packages/ti/dsplib/src/DSPF_dp_lud/DSPF_dp_lud.h b/packages/ti/dsplib/src/DSPF_dp_lud/DSPF_dp_lud.h
+index 78ea4ff..8511ad0 100644
+--- a/packages/ti/dsplib/src/DSPF_dp_lud/DSPF_dp_lud.h
++++ b/packages/ti/dsplib/src/DSPF_dp_lud/DSPF_dp_lud.h
+@@ -40,7 +40,7 @@
+ #define _DSPF_DP_LUD_H_
+ 
+ #if defined(_TMS320C6600)
+-#include <ti/dsplib/src/DSPF_dp_lud/c66/DSPF_dp_lud.h>
++#include <ti/dsplib/src/DSPF_dp_lud/C66/DSPF_dp_lud.h>
+ #else
+ #error invalid target
+ #endif
+diff --git a/packages/ti/dsplib/src/DSPF_dp_lud_inv/DSPF_dp_lud_inv.h b/packages/ti/dsplib/src/DSPF_dp_lud_inv/DSPF_dp_lud_inv.h
+index 4515500..52a4920 100644
+--- a/packages/ti/dsplib/src/DSPF_dp_lud_inv/DSPF_dp_lud_inv.h
++++ b/packages/ti/dsplib/src/DSPF_dp_lud_inv/DSPF_dp_lud_inv.h
+@@ -40,7 +40,7 @@
+ #define DSPF_DP_LUD_INV_H_
+ 
+ #if defined(_TMS320C6600)
+-#include <ti/dsplib/src/DSPF_dp_lud_inv/c66/DSPF_dp_lud_inv.h>
++#include <ti/dsplib/src/DSPF_dp_lud_inv/C66/DSPF_dp_lud_inv.h>
+ #else
+ #error invalid target
+ #endif
+diff --git a/packages/ti/dsplib/src/DSPF_dp_lud_sol/DSPF_dp_lud_sol.h b/packages/ti/dsplib/src/DSPF_dp_lud_sol/DSPF_dp_lud_sol.h
+index 8e2e032..60e2ad3 100644
+--- a/packages/ti/dsplib/src/DSPF_dp_lud_sol/DSPF_dp_lud_sol.h
++++ b/packages/ti/dsplib/src/DSPF_dp_lud_sol/DSPF_dp_lud_sol.h
+@@ -40,7 +40,7 @@
+ #define DSPF_DP_LUD_SOL_H_
+ 
+ #if defined(_TMS320C6600)
+-#include <ti/dsplib/src/DSPF_dp_lud_sol/c66/DSPF_dp_lud_sol.h>
++#include <ti/dsplib/src/DSPF_dp_lud_sol/C66/DSPF_dp_lud_sol.h>
+ #else
+ #error invalid target
+ #endif
+diff --git a/packages/ti/dsplib/src/DSPF_dp_qrd/DSPF_dp_qrd.h b/packages/ti/dsplib/src/DSPF_dp_qrd/DSPF_dp_qrd.h
+index 05ad033..5055776 100644
+--- a/packages/ti/dsplib/src/DSPF_dp_qrd/DSPF_dp_qrd.h
++++ b/packages/ti/dsplib/src/DSPF_dp_qrd/DSPF_dp_qrd.h
+@@ -40,7 +40,7 @@
+ #define _DSPF_DP_QRD_H_
+ 
+ #if defined(_TMS320C6600)
+-#include <ti/dsplib/src/DSPF_dp_qrd/c66/DSPF_dp_qrd.h>
++#include <ti/dsplib/src/DSPF_dp_qrd/C66/DSPF_dp_qrd.h>
+ #else
+ #error invalid target
+ #endif
+diff --git a/packages/ti/dsplib/src/DSPF_dp_svd/DSPF_dp_svd.h b/packages/ti/dsplib/src/DSPF_dp_svd/DSPF_dp_svd.h
+index 2255e9b..a9a1673 100644
+--- a/packages/ti/dsplib/src/DSPF_dp_svd/DSPF_dp_svd.h
++++ b/packages/ti/dsplib/src/DSPF_dp_svd/DSPF_dp_svd.h
+@@ -40,7 +40,7 @@
+ #define _DSPF_DP_SVD_H_
+ 
+ #if defined(_TMS320C6600)
+-#include <ti/dsplib/src/DSPF_dp_svd/c66/DSPF_dp_svd.h>
++#include <ti/dsplib/src/DSPF_dp_svd/C66/DSPF_dp_svd.h>
+ #else
+ #error invalid target
+ #endif
+diff --git a/packages/ti/dsplib/src/DSPF_sp_erand/c66/DSPF_sp_erand.h b/packages/ti/dsplib/src/DSPF_sp_erand/c66/DSPF_sp_erand.h
+index 2681f16..bff1caf 100644
+--- a/packages/ti/dsplib/src/DSPF_sp_erand/c66/DSPF_sp_erand.h
++++ b/packages/ti/dsplib/src/DSPF_sp_erand/c66/DSPF_sp_erand.h
+@@ -48,7 +48,7 @@
+ #include "C6xSimulator_type_modifiers.h"  // define/undefine typing keywords
+ #endif
+ 
+-#include "..\..\DSP_urand32\c66\DSP_urand32.h"
++#include "ti/dsplib/src/DSP_urand32/c66/DSP_urand32.h"
+ 
+ /** @ingroup MATH */
+ /* @{ */
+diff --git a/packages/ti/dsplib/src/DSPF_sp_fftSPxSP_r2c/c66/DSPF_sp_fftSPxSP_r2c.h b/packages/ti/dsplib/src/DSPF_sp_fftSPxSP_r2c/c66/DSPF_sp_fftSPxSP_r2c.h
+index 9672371..df535ec 100644
+--- a/packages/ti/dsplib/src/DSPF_sp_fftSPxSP_r2c/c66/DSPF_sp_fftSPxSP_r2c.h
++++ b/packages/ti/dsplib/src/DSPF_sp_fftSPxSP_r2c/c66/DSPF_sp_fftSPxSP_r2c.h
+@@ -44,7 +44,7 @@
+ #ifndef DSPF_SP_fftSPxSP_R2C_H_
+ #define DSPF_SP_fftSPxSP_R2C_H_
+ 
+-#include "..\..\DSPF_SP_fftSPxSP\c66\DSPF_SP_fftSPxSP.h"
++#include "ti/dsplib/src/DSPF_sp_fftSPxSP/c66/DSPF_sp_fftSPxSP.h"
+ 
+ /** @ingroup FFT */
+ /* @{ */
+diff --git a/packages/ti/dsplib/src/DSPF_sp_ifftSPxSP_c2r/c66/DSPF_sp_ifftSPxSP_c2r.h b/packages/ti/dsplib/src/DSPF_sp_ifftSPxSP_c2r/c66/DSPF_sp_ifftSPxSP_c2r.h
+index 39e24b3..646a8fc 100644
+--- a/packages/ti/dsplib/src/DSPF_sp_ifftSPxSP_c2r/c66/DSPF_sp_ifftSPxSP_c2r.h
++++ b/packages/ti/dsplib/src/DSPF_sp_ifftSPxSP_c2r/c66/DSPF_sp_ifftSPxSP_c2r.h
+@@ -44,7 +44,7 @@
+ #ifndef DSPF_SP_ifftSPxSP_c2r_H_
+ #define DSPF_SP_ifftSPxSP_c2r_H_
+ 
+-#include "..\..\DSPF_SP_ifftSPxSP\c66\DSPF_SP_ifftSPxSP.h"
++#include "ti/dsplib/src/DSPF_sp_ifftSPxSP/c66/DSPF_sp_ifftSPxSP.h"
+ 
+ /** @ingroup FFT */
+ /* @{ */
+diff --git a/packages/ti/dsplib/src/DSPF_sp_nrand/c66/DSPF_sp_nrand.h b/packages/ti/dsplib/src/DSPF_sp_nrand/c66/DSPF_sp_nrand.h
+index 2735e6f..8681c93 100644
+--- a/packages/ti/dsplib/src/DSPF_sp_nrand/c66/DSPF_sp_nrand.h
++++ b/packages/ti/dsplib/src/DSPF_sp_nrand/c66/DSPF_sp_nrand.h
+@@ -48,7 +48,7 @@
+ #include "C6xSimulator_type_modifiers.h"  // define/undefine typing keywords
+ #endif
+ 
+-#include "..\..\DSP_urand32\c66\DSP_urand32.h"
++#include "ti/dsplib/src/DSP_urand32/c66/DSP_urand32.h"
+ 
+ /** @ingroup MATH */
+ /* @{ */
+diff --git a/packages/ti/dsplib/src/DSPF_sp_qrd/DSPF_sp_qrd.h b/packages/ti/dsplib/src/DSPF_sp_qrd/DSPF_sp_qrd.h
+index 5f9b4a2..d779498 100644
+--- a/packages/ti/dsplib/src/DSPF_sp_qrd/DSPF_sp_qrd.h
++++ b/packages/ti/dsplib/src/DSPF_sp_qrd/DSPF_sp_qrd.h
+@@ -40,7 +40,7 @@
+ #define _DSPF_SP_QRD_H_
+ 
+ #if defined(_TMS320C6600)
+-#include <ti/dsplib/src/DSPF_sp_qrd/c66/DSPF_sp_qrd.h>
++#include <ti/dsplib/src/DSPF_sp_qrd/C66/DSPF_sp_qrd.h>
+ #else
+ #error invalid target
+ #endif
+diff --git a/packages/ti/dsplib/src/DSPF_sp_svd/DSPF_sp_svd.h b/packages/ti/dsplib/src/DSPF_sp_svd/DSPF_sp_svd.h
+index 38f00ce..ba4f17a 100644
+--- a/packages/ti/dsplib/src/DSPF_sp_svd/DSPF_sp_svd.h
++++ b/packages/ti/dsplib/src/DSPF_sp_svd/DSPF_sp_svd.h
+@@ -40,7 +40,7 @@
+ #define _DSPF_SP_SVD_H_
+ 
+ #if defined(_TMS320C6600)
+-#include <ti/dsplib/src/DSPF_sp_svd/c66/DSPF_sp_svd.h>
++#include <ti/dsplib/src/DSPF_sp_svd/C66/DSPF_sp_svd.h>
+ #else
+ #error invalid target
+ #endif
+diff --git a/packages/ti/dsplib/src/DSPF_sp_urand/c66/DSPF_sp_urand.h b/packages/ti/dsplib/src/DSPF_sp_urand/c66/DSPF_sp_urand.h
+index 689f89e..2731c3e 100644
+--- a/packages/ti/dsplib/src/DSPF_sp_urand/c66/DSPF_sp_urand.h
++++ b/packages/ti/dsplib/src/DSPF_sp_urand/c66/DSPF_sp_urand.h
+@@ -48,7 +48,7 @@
+ #include "C6xSimulator_type_modifiers.h"  // define/undefine typing keywords
+ #endif
+ 
+-#include "..\..\DSP_urand32\c66\DSP_urand32.h"
++#include "ti/dsplib/src/DSP_urand32/c66/DSP_urand32.h"
+ 
+ 
+ /** @ingroup MATH */

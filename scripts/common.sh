@@ -29,6 +29,7 @@ wget_download() {
 install_dsplib() {
     local dsplib_version=$1
     local install_dir=$2
+    local mcupsdk_setup_dir=$3
     local dsplib_url="https://software-dl.ti.com/sdoemb/sdoemb_public_sw/dsplib/latest//exports/"
     local dsplib_folder="dsplib_c66x_${dsplib_version}"
     local dsplib_install_file="dsplib_c66x_${dsplib_version}_Linux.bin"
@@ -40,7 +41,14 @@ install_dsplib() {
         chmod +x ${dsplib_install_file}
         ./${dsplib_install_file} --mode silent --prefix ${install_dir}/${dsplib_folder}
         rm -f ${dsplib_install_file}
+
+        #Apply DSPLIB patch
+        echo "Applying patch ..."
+        pushd ${install_dir}/${dsplib_folder} 1>/dev/null
+        patch -p1 < ${mcupsdk_setup_dir}/patch/dsplib_3_4_0_0.patch
+        popd 1>/dev/null
     fi
+
     echo "[DSPLIB $1] Done ..."
 }
 
@@ -241,11 +249,11 @@ install_doxygen() {
 tag_replace() {
     if [ $# -ge 3 ] &&  [ -n "$3" ]; then
         #For Branches or Tags
-        local find_str="$2\"[ ]*revision=\"[0-9A-Za-z_\-\.\/]*\""
+        local find_str="$2\"[ \t]*revision=\"[0-9A-Za-z_\-\.\/]*\""
         local replace_str="$2\" revision=\"$3\" clone-depth=\"1\""
         sed -i -e "s|$find_str|$replace_str|g" $1
     else
-        local find_str="$2\"[ ]*revision=(\"[0-9A-Za-z_\-]*\")"
+        local find_str="$2\"[ \t]*revision=(\"[0-9A-Za-z_\-]*\")"
         local replace_str="$2\" revision=\1 clone-depth=\"1\""
         sed -r -i -e "s|$find_str|$replace_str|g" $1
     fi
