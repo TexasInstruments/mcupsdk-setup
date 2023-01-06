@@ -225,15 +225,23 @@ install_gcc_arm() {
 
 install_doxygen() {
     local version=$1
+    local version_underscore=`echo ${version} | sed -e "s|\.|_|g"`
+
+    sudo apt-get install -y cmake flex bison
+    sudo apt-get remove -y doxygen
 
     if ! command -v doxygen  &> /dev/null
     then
         echo "[doxygen ${version}]  Installing ..."
         pushd ${HOME} 1>/dev/null
-        wget -q https://versaweb.dl.sourceforge.net/project/doxygen/rel-${version}/doxygen-${version}.linux.bin.tar.gz
-        tar -xf doxygen-${version}.linux.bin.tar.gz
-        export PATH=${HOME}/doxygen-${version}/bin:$PATH
-        echo "export PATH=${HOME}/doxygen-${version}/bin:\$PATH" >> ${HOME}/.bashrc
+        git clone -q https://github.com/doxygen/doxygen.git
+        cd doxygen
+        git checkout Release_${version_underscore} 1>/dev/null
+        mkdir build
+        cd build
+        cmake -G "Unix Makefiles" .. 1>/dev/null
+        make -j8    1>/dev/null
+        sudo make install
         echo "[doxygen ${version}]  Done"
         popd 1>/dev/null
     fi
