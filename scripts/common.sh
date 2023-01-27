@@ -101,6 +101,7 @@ ccs_discover_tools() {
 install_nodejs() {
     local version=$1
     local mcu_plus_sdk_folder=$2
+    local nvm_pass=1
 
     if [ ! -d ~/.nvm/versions/node/v${version} ]; then
         echo "[nodejs ${version}] Installing ..."
@@ -113,22 +114,32 @@ install_nodejs() {
                 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
                 nvm install ${version}
                 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+                rm -f install_nvm.sh
+                export PATH=~/.nvm/versions/node/v${version}/bin:$PATH
             else
-                echo "ERROR: Installation of NodeJS v${version} failed. Please install manually and do 'npm ci' inside mcu_plus_sdk once installed."
-                return 1
+                echo "INFO: Installation of NodeJS using NVM script v${version} failed (NVM script Error)"
+                nvm_pass=0
             fi
         else
-            echo "ERROR: Installation of NodeJS v${version} failed. Please install manually and do 'npm ci' inside mcu_plus_sdk once installed."
-            return 1
+            echo "INFO: Installation of NodeJS using NVM script v${version} failed (Couldn't download NVM script)"
+            nvm_pass=0
         fi
-        #Clean-up
-        rm -f install_nvm.sh
 
+        if [ $nvm_pass == 0 ]; then
+            # NVM script has failed, try downloading from NodeJS website directly
+            echo "INFO: Trying NodeJS v${version} installation directly"
+            wget -q https://nodejs.org/download/release/v${version}/node-v${version}-linux-x64.tar.xz
+            mkdir -p ~/node-v${version}
+            tar -xf node-v${version}-linux-x64.tar.xz -C ~/node-v${version} --strip-components=1
+            echo "export PATH=$HOME/node-v${version}/bin:\$PATH" >> ~/.bashrc
+            export PATH=~/node-v${version}/bin:$PATH
+            rm -rf node-v${version}-linux-x64.tar.xz
+        fi
+        
         echo "[nodejs ${version}] Done "
     fi
 
     #Install required nodejs packages
-    export PATH=~/.nvm/versions/node/v${version}/bin:$PATH
     if [ ! -d ${mcu_plus_sdk_folder}/node_modules ]; then
         echo "[nodejs packages] Installing required nodejs packages ..."
         cd ${mcu_plus_sdk_folder}
