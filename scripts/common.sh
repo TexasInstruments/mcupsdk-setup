@@ -103,9 +103,11 @@ install_nodejs() {
     local mcu_plus_sdk_folder=$2
     local nvm_pass=1
 
-    if [ ! -d ~/.nvm/versions/node/v${version} ]; then
-        echo "[nodejs ${version}] Installing ..."
+    echo "[nodejs ${version}] Installing ..."
 
+    # Check for possible node folders
+    if [ ! -d ~/.nvm/versions/node/v${version} ] &&  [ ! -d ~/node-v${version} ]; then
+        # node is not installed. Try using NVM first
         curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh -o install_nvm.sh
         if [ -e install_nvm.sh ]; then
             if grep -q "nvm" install_nvm.sh; then
@@ -115,6 +117,7 @@ install_nodejs() {
                 nvm install ${version}
                 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
                 rm -f install_nvm.sh
+                echo "export PATH=$HOME/.nvm/versions/node/v${version}/bin:\$PATH" >> ~/.bashrc
                 export PATH=~/.nvm/versions/node/v${version}/bin:$PATH
             else
                 echo "INFO: Installation of NodeJS using NVM script v${version} failed (NVM script Error)"
@@ -124,7 +127,7 @@ install_nodejs() {
             echo "INFO: Installation of NodeJS using NVM script v${version} failed (Couldn't download NVM script)"
             nvm_pass=0
         fi
-
+        # Check if NVM was successful
         if [ $nvm_pass == 0 ]; then
             # NVM script has failed, try downloading from NodeJS website directly
             echo "INFO: Trying NodeJS v${version} installation directly"
@@ -135,9 +138,16 @@ install_nodejs() {
             export PATH=~/node-v${version}/bin:$PATH
             rm -rf node-v${version}-linux-x64.tar.xz
         fi
-        
-        echo "[nodejs ${version}] Done "
+    else
+        # Check if node and npm commands are working
+        if ! command -v node &> /dev/null; then
+            # node is installed. Export both the paths to be safe
+            export PATH=~/.nvm/versions/node/v${version}/bin:$PATH
+            export PATH=~/node-v${version}/bin:$PATH
+        fi
     fi
+
+    echo "[nodejs ${version}] Done "
 
     #Install required nodejs packages
     if [ ! -d ${mcu_plus_sdk_folder}/node_modules ]; then
