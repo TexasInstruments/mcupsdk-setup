@@ -106,7 +106,7 @@ install_nodejs() {
     echo "[nodejs ${version}] Installing ..."
 
     # Check for possible node folders
-    if [ ! -d ~/.nvm/versions/node/v${version} ] &&  [ ! -d ~/node-v${version} ]; then
+    if [ ! -d ~/.nvm/versions/node/v${version} ] &&  [ ! -d ~/node-v${version} ] && ! command -v node &> /dev/null; then
         # node is not installed. Try using NVM first
         curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh -o install_nvm.sh
         if [ -e install_nvm.sh ]; then
@@ -139,12 +139,8 @@ install_nodejs() {
             rm -rf node-v${version}-linux-x64.tar.xz
         fi
     else
-        # Check if node and npm commands are working
-        if ! command -v node &> /dev/null; then
-            # node is installed. Export both the paths to be safe
-            export PATH=~/.nvm/versions/node/v${version}/bin:$PATH
-            export PATH=~/node-v${version}/bin:$PATH
-        fi
+        export PATH=~/.nvm/versions/node/v${version}/bin:$PATH
+        export PATH=~/node-v${version}/bin:$PATH
     fi
 
     echo "[nodejs ${version}] Done "
