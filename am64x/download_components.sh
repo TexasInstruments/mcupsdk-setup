@@ -44,7 +44,7 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 : ${skip_nodejs:="false"}
 : ${skip_doxygen:="false"}
 
-release_version=08_05_00
+release_version=09_00_00
 product_family="am64x"
 THIS_DIR=$(dirname $(realpath $0))
 BASE_DIR=$(realpath ${THIS_DIR}/..)
