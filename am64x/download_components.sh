@@ -24,6 +24,10 @@ case $key in
     skip_doxygen="${1#*=}"
     shift # past argument
     ;;
+    --skip_ccs=*)
+    skip_ccs="${1#*=}"
+    shift # past argument
+    ;;
     -h|--help)
     echo Usage: $0 [options]
     echo
@@ -32,6 +36,7 @@ case $key in
     echo "--install_dir          Path where the tools should be installed. Default value is "${HOME}/ti""
     echo "--skip_nodejs          Pass "--skip_nodejs=true" to skip nodejs installation. Default value is false."
     echo "--skip_doxygen         Pass "--skip_doxygen=true" to skip doxygen installation. Default value is false."
+    echo "--skip_ccs             Pass "--skip_ccs=true" to skip CCS installation. Default value is false."
     exit 0
     ;;
 esac
@@ -43,6 +48,7 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 : ${install_dir:="${HOME}/ti"}
 : ${skip_nodejs:="false"}
 : ${skip_doxygen:="false"}
+: ${skip_ccs:="false"}
 
 release_version=09_00_00
 product_family="am64x"
@@ -52,4 +58,4 @@ script=${BASE_DIR}/releases/${release_version}/${product_family}/download_compon
 
 #Reuse current release version download script
 echo "Invoking ${script}"
-${script} --mcu_plus_sdk_folder="${mcu_plus_sdk_folder}" --install_dir="${install_dir}" --skip_nodejs="${skip_nodejs}" --skip_doxygen="${skip_doxygen}"
+${script} --mcu_plus_sdk_folder="${mcu_plus_sdk_folder}" --install_dir="${install_dir}" --skip_nodejs="${skip_nodejs}" --skip_doxygen="${skip_doxygen}" --skip_ccs="${skip_ccs}"

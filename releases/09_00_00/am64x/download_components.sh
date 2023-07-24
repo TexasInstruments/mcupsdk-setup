@@ -29,6 +29,10 @@ case $key in
     skip_doxygen="${1#*=}"
     shift # past argument
     ;;
+    --skip_ccs=*)
+    skip_ccs="${1#*=}"
+    shift # past argument
+    ;;
     -h|--help)
     echo Usage: $0 [options]
     echo
@@ -46,6 +50,7 @@ COMPONENT_DIR=${BASE_DIR}/../..
 : ${install_dir:="${HOME}/ti"}
 : ${skip_nodejs:="false"}
 : ${skip_doxygen:="false"}
+: ${skip_ccs:="false"}
 
 #Source common component versions
 source ${THIS_DIR}/../.component_versions
@@ -69,7 +74,9 @@ if [ "${OS}" = "Windows_NT" ]; then
     echo "Installing windows packages"
     #TODO
 else
-    install_ccs     ${CCS_VERSION} ${install_dir}
+    if [ "$skip_ccs" == "false" ]; then
+        install_ccs     ${CCS_VERSION} ${install_dir}
+    fi
     #install_clang   ${CGT_TI_ARM_CLANG_VERSION} ${clang_url_folder} ${clang_install_folder} ${clang_install_file} ${install_dir}
     install_gcc_aarch64 ${GCC_AARCH64_VERSION} ${gcc_aarch64_install_folder} ${gcc_aarch64_download_file} ${install_dir}
     install_gcc_arm     ${GCC_ARM_VERSION}     ${gcc_arm_install_folder}     ${gcc_arm_download_file}     ${install_dir} ${GCC_ARM_VERSION_FOLDER}
