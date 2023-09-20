@@ -75,7 +75,7 @@ else
     if [ "$skip_ccs" == "false" ]; then
         install_ccs     ${CCS_VERSION} ${install_dir}
     fi
-    #install_clang   ${CGT_TI_ARM_CLANG_VERSION} ${clang_url_folder} ${clang_install_folder} ${clang_install_file} ${install_dir}
+    install_clang   ${CGT_TI_ARM_CLANG_VERSION} ${clang_url_folder} ${clang_install_folder} ${clang_install_file} ${install_dir}
     install_gcc_arm ${GCC_ARM_VERSION} ${gcc_arm_install_folder} ${gcc_arm_download_file} ${install_dir} ${GCC_ARM_VERSION_FOLDER}
     install_syscfg  ${SYSCFG_VERSION} ${install_dir}
     if [ "$skip_nodejs" == "false" ]; then
