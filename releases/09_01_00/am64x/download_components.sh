@@ -59,7 +59,7 @@ source ${BASE_DIR}/scripts/common.sh
 gcc_aarch64_install_folder="gcc-arm-${GCC_AARCH64_VERSION}-x86_64-aarch64-none-elf"
 gcc_aarch64_download_file="gcc-arm-${GCC_AARCH64_VERSION}-x86_64-aarch64-none-elf.tar.xz"
 gcc_arm_install_folder="gcc-arm-none-eabi-${GCC_ARM_VERSION}"
-gcc_arm_download_file="gcc-arm-none-eabi-${GCC_ARM_VERSION}-linux.tar.bz2"
+gcc_arm_download_file="gcc-arm-none-eabi-${GCC_ARM_VERSION}-x86_64-linux.tar.bz2"
 
 if [ "$install_win_package_on_linux" == "true" ]; then
     echo "Installing windows packages on linux machine...."
