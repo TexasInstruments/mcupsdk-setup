@@ -52,6 +52,25 @@ install_dsplib() {
     echo "[DSPLIB $1] Done ..."
 }
 
+install_c7000_cgt()
+{
+    local c7000_version=$1
+    local install_dir=$2
+    local c7000_filename=ti_cgt_c7000_${c7000_version}_linux-x64_installer.bin
+
+    echo "[c7000 $1] Checking ..."
+    if [ -d "${install_dir}/ti-cgt-c7000_${c7000_version}" ]
+    then
+        echo "ti-cgt-c7000_${c7000_version} is already installed on ${install_dir}"
+    else
+        echo "Installing ti-cgt-c7000_${c7000_version}"
+        wget -q https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-707zYe3Rik/${c7000_version}/ti_cgt_c7000_${c7000_version}_linux-x64_installer.bin
+        chmod +x $c7000_filename
+        ./${c7000_filename} --mode unattended --installdir $install_dir --prefix $install_dir
+    fi
+    echo "[C7000 $1] Done "
+}
+
 install_ccs() {
     local ccs_version=$1
     local install_dir=$2
