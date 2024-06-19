@@ -58,4 +58,4 @@ script=${BASE_DIR}/releases/${release_version}/${product_family}/download_compon
 
 #Reuse current release version download script
 echo "Invoking ${script}"
-${script} --mcu_plus_sdk_folder="${mcu_plus_sdk_folder}" --install_dir="${install_dir}" --skip_nodejs="${skip_nodejs}" --skip_doxygen="${skip_doxygen}" --skip_ccs="${skip_ccs}"
+${script} --mcu_plus_sdk_folder="${mcu_plus_sdk_folder}" --install_dir="${install_dir}" --skip_nodejs="${skip_nodejs}" --skip_doxygen="${skip_doxygen}" --skip_ccs="${skip_ccs}" --product_family="${product_family}"

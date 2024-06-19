@@ -181,7 +181,12 @@ install_syscfg() {
     local syscfg_install_file="sysconfig-${version}-setup.run"
     local syscfg_build_version=`echo ${version} | cut -d "_" -f 2`
     local syscfg_folder=sysconfig_`echo ${version} | cut -d "_" -f 1`
-    local syscfg_url="https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-nsUM6f7Vvb/${version_dot}"
+    
+    if [ "$version" == "1.20.999_143" ]; then
+        local syscfg_url="http://bangsdowebsvr01.india.ti.com/PROCESSOR_SDK_RTOS_AUTOMOTIVE/swdownloads/mcu_plus_sdk"
+    else
+        local syscfg_url="https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-nsUM6f7Vvb/${version_dot}"
+    fi
 
     echo "[syscfg ${version}] Checking ..."
     if [ ! -d "${install_dir}/${syscfg_folder}" ]

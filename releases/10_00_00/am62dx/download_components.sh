@@ -33,6 +33,10 @@ case $key in
     skip_ccs="${1#*=}"
     shift # past argument
     ;;
+    --product_family=*)
+    product_family="${1#*=}"
+    shift # past argument
+    ;;
     -h|--help)
     echo Usage: $0 [options]
     echo
@@ -51,6 +55,7 @@ COMPONENT_DIR=${BASE_DIR}/../..
 : ${skip_nodejs:="false"}
 : ${skip_doxygen:="false"}
 : ${skip_ccs:="false"}
+: ${product_family:="am62dx"}
 
 #Source common component versions
 source ${THIS_DIR}/../.component_versions

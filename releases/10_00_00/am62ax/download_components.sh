@@ -33,6 +33,10 @@ case $key in
     skip_ccs="${1#*=}"
     shift # past argument
     ;;
+    --product_family=*)
+    product_family="${1#*=}"
+    shift # past argument
+    ;;
     -h|--help)
     echo Usage: $0 [options]
     echo
