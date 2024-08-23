@@ -50,7 +50,7 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 : ${skip_doxygen:="false"}
 : ${skip_ccs:="false"}
 
-release_version=09_02_01
+release_version=09_03_00
 product_family="am65x"
 THIS_DIR=$(dirname $(realpath $0))
 BASE_DIR=$(realpath ${THIS_DIR}/..)
