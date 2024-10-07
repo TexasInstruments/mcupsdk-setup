@@ -288,6 +288,18 @@ install_doxygen() {
     fi
 }
 
+install_dtc() {
+
+    if ! command -v device-tree-compiler &> /dev/null
+    then
+        echo "[device-tree-compiler ${version}]  Installing ..."
+        pushd ${HOME} 1>/dev/null
+        sudo apt-get install device-tree-compiler
+        echo "[device-tree-compiler ${version}]  Done"
+        popd 1>/dev/null
+    fi
+}
+
 #
 # This function is used to replace the tag/reference in a repo manifest file
 #

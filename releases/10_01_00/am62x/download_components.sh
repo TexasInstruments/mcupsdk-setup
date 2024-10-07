@@ -33,6 +33,10 @@ case $key in
     skip_ccs="${1#*=}"
     shift # past argument
     ;;
+    --skip_dtc=*)
+    skip_dtc="${1#*=}"
+    shift # past argument
+    ;;
     --product_family=*)
     product_family="${1#*=}"
     shift # past argument
@@ -55,6 +59,7 @@ COMPONENT_DIR=${BASE_DIR}/../..
 : ${skip_nodejs:="false"}
 : ${skip_doxygen:="false"}
 : ${skip_ccs:="false"}
+: ${skip_dtc:="false"}
 
 #Source common component versions
 source ${THIS_DIR}/../.component_versions
@@ -91,6 +96,9 @@ else
     if [ "$skip_doxygen" == "false" ]; then
         install_doxygen ${DOXYGEN_VERSION}
     fi
+    if [ "$skip_dtc" == "false" ]; then
+        install_dtc
+    fi 
     ccs_discover_tools  ${CCS_VERSION} ${install_dir}
 fi
 

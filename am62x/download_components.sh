@@ -28,6 +28,10 @@ case $key in
     skip_ccs="${1#*=}"
     shift # past argument
     ;;
+    --skip_dtc=*)
+    skip_dtc="${1#*=}"
+    shift # past argument
+    ;;
     -h|--help)
     echo Usage: $0 [options]
     echo
@@ -37,6 +41,7 @@ case $key in
     echo "--skip_nodejs          Pass "--skip_nodejs=true" to skip nodejs installation. Default value is false."
     echo "--skip_doxygen         Pass "--skip_doxygen=true" to skip doxygen installation. Default value is false."
     echo "--skip_ccs             Pass "--skip_ccs=true" to skip CCS installation. Default value is false."
+    echo "--skip_dtc             Pass "--skip_dtc=true" to skip Device Tree Compiler installation. Default value is false."
     exit 0
     ;;
 esac
@@ -49,6 +54,7 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 : ${skip_nodejs:="false"}
 : ${skip_doxygen:="false"}
 : ${skip_ccs:="false"}
+: ${skip_dtc:="false"}
 
 release_version=10_01_00
 product_family="am62x"
@@ -58,4 +64,4 @@ script=${BASE_DIR}/releases/${release_version}/${product_family}/download_compon
 
 #Reuse current release version download script
 echo "Invoking ${script}"
-${script} --mcu_plus_sdk_folder="${mcu_plus_sdk_folder}" --install_dir="${install_dir}" --skip_nodejs="${skip_nodejs}" --skip_doxygen="${skip_doxygen}" --skip_ccs="${skip_ccs}" --product_family="${product_family}"
+${script} --mcu_plus_sdk_folder="${mcu_plus_sdk_folder}" --install_dir="${install_dir}" --skip_nodejs="${skip_nodejs}" --skip_doxygen="${skip_doxygen}" --skip_ccs="${skip_ccs}" --skip_dtc="${skip_dtc}" --product_family="${product_family}"
