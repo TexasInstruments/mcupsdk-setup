@@ -86,6 +86,9 @@ install_ccs() {
     echo "[ccs $1] Checking ..."
     if [ ! -d "${install_dir}/${ccs_folder}" ]
     then
+        echo " Installing dependent libraries ..."
+        sudo apt install libc6:i386 libusb-0.1-4 libgconf-2-4 libncurses5 libpython2.7 libtinfo5 build-essential
+
         wget_download ${ccs_folder} ${ccs_install_file} ${ccs_url}
         mkdir -p "${install_dir}"
         tar xf ${ccs_install_file} -C "${install_dir}"
