@@ -11,7 +11,7 @@ NODEJS_VERSION="12.18.4"
 if [ "${product_family}" == "am62dx" -o "${PRODUCT_FAMILY_CAPS}" == "AM62DX" ]; then
     SYSCFG_VERSION="1.20.999_143"
 else
-    SYSCFG_VERSION="1.20.0_3587"
+    SYSCFG_VERSION="1.21.0_3721"
 fi
 DOXYGEN_VERSION="1.8.20"
 
