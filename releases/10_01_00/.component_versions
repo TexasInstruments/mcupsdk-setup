@@ -9,7 +9,7 @@ C7000_CGT_VERSION="4.1.0.LTS"
 
 NODEJS_VERSION="12.18.4"
 if [ "${product_family}" == "am62dx" -o "${PRODUCT_FAMILY_CAPS}" == "AM62DX" ]; then
-    SYSCFG_VERSION="1.20.999_143"
+    SYSCFG_VERSION="1.22.0_3893"
 else
     SYSCFG_VERSION="1.20.0_3587"
 fi
