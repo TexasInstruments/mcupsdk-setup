@@ -37,6 +37,10 @@ case $key in
     product_family="${1#*=}"
     shift # past argument
     ;;
+    --c7000_internal_link=*)
+    c7000_internal_link="${1#*=}"
+    shift # past argument
+    ;;
     -h|--help)
     echo Usage: $0 [options]
     echo
@@ -55,6 +59,7 @@ COMPONENT_DIR=${BASE_DIR}/../..
 : ${skip_nodejs:="false"}
 : ${skip_doxygen:="false"}
 : ${skip_ccs:="false"}
+: ${c7000_internal_link:="false"}
 : ${product_family:="am62dx"}
 
 #Source common component versions
@@ -86,7 +91,7 @@ else
     install_gcc_aarch64 ${GCC_AARCH64_VERSION} ${gcc_aarch64_install_folder} ${gcc_aarch64_download_file} ${install_dir}
     install_gcc_arm     ${GCC_ARM_VERSION}     ${gcc_arm_install_folder}     ${gcc_arm_download_file}     ${install_dir} ${GCC_ARM_VERSION_FOLDER}
     install_syscfg  ${SYSCFG_VERSION} ${install_dir}
-    install_c7000_cgt ${C7000_CGT_VERSION} ${install_dir}
+    install_c7000_cgt ${C7000_CGT_VERSION} ${install_dir} ${c7000_internal_link}
     if [ "$skip_nodejs" == "false" ]; then
         install_nodejs  ${NODEJS_VERSION} ${mcu_plus_sdk_folder}
     fi
