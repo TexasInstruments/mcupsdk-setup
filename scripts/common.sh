@@ -52,6 +52,25 @@ install_dsplib() {
     echo "[DSPLIB $1] Done ..."
 }
 
+install_c6000_cgt()
+{
+    local c6000_cgt_version=$1
+    local install_dir=$2
+    local c6000_cgt_filename=ti_cgt_c6000_${c6000_version}_linux-x64_installer.bin
+
+    echo "[c6000 cgt $1] Checking ..."
+    if [ -d "${install_dir}/ti-cgt-c6000_${c6000_cgt_version}" ]
+    then
+        echo "ti-cgt-c6000_${c6000_cgt_version} is already installed on ${install_dir}"
+    else
+        echo "Installing ti-cgt-c6000_${c6000_cgt_version}"
+        wget -q https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-vqU2jj6ibH/${c6000_cgt_version}/${c6000_cgt_filename}
+        chmod +x $c6000_cgt_filename
+        ./${c6000_cgt_filename} --mode unattended --installdir $install_dir --prefix $install_dir
+    fi
+    echo "[C6000 cgt $1] Done "
+}
+
 install_c7000_cgt()
 {
     local c7000_version=$1
