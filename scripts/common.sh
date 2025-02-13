@@ -87,10 +87,25 @@ install_ccs() {
     local ccs_version_short=`echo ${ccs_version} | cut -d "." -f -3 | sed -e "s|\.|_|g"`
     local ccs_version_short_dot=`echo ${ccs_version_short} | sed -e "s|\_|.|g"`
     local ccs_folder=ccs`echo ${ccs_version} | cut -d "." -f -3 | sed -e "s|\.||g"`
-    local ccs_install_file="CCS${ccs_version}_linux-x64.tar.gz"
     local ccs_url="https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-J1VdearkvK/${ccs_version_short_dot}"
 
     local ccs_untar_folder=`echo ${ccs_install_file} | sed -e "s|\.tar\.gz||g"`
+
+    declare ccs_install_file ccs_uncompressed_folder ccs_installer_file_type
+
+    if [[ $ccs_version_major -lt 20 ]]; then  # Older CCS versions
+        ccs_installer_file_type="tar"
+    else
+        ccs_installer_file_type="zip"
+    fi
+
+    if [[ $ccs_installer_file_type == "tar" ]]; then
+        ccs_install_file="CCS${ccs_version}_linux-x64.tar.gz"
+        ccs_uncompressed_folder=`echo ${ccs_install_file} | sed -e "s|\.tar\.gz||g"`
+    else
+        ccs_install_file="CCS_${ccs_version}_linux.zip"
+        ccs_uncompressed_folder=`echo ${ccs_install_file} | sed -e "s|\.zip||g"`
+    fi
 
     echo "[ccs $1] Checking ..."
     if [ ! -d "${install_dir}/${ccs_folder}" ]
@@ -100,13 +115,17 @@ install_ccs() {
 
         wget_download ${ccs_folder} ${ccs_install_file} ${ccs_url}
         mkdir -p "${install_dir}"
-        tar xf ${ccs_install_file} -C "${install_dir}"
+        if [[ $ccs_installer_file_type == "tar" ]]; then
+            tar -xf ${ccs_install_file} -C "${install_dir}"
+        else
+            unzip -q ${ccs_install_file} -d "${install_dir}"
+        fi
         echo "[${ccs_folder}] Installing ..."
-        ${install_dir}/${ccs_untar_folder}/ccs_setup_${ccs_version}.run --mode unattended --prefix "${install_dir}/${ccs_folder}"
+        ${install_dir}/${ccs_uncompressed_folder}/ccs_setup_${ccs_version}.run --mode unattended --prefix "${install_dir}/${ccs_folder}"
 
         #Clean-up
         rm -f ${ccs_install_file}
-        rm -rf "${install_dir}/${ccs_untar_folder}"
+        rm -rf "${install_dir}/${ccs_uncompressed_folder}"
     fi
     echo "[${ccs_folder}] Done "
 }
