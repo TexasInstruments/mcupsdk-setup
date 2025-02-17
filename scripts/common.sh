@@ -208,13 +208,14 @@ install_nodejs() {
 install_syscfg() {
     local version=$1
     local install_dir=$2
+    local link_type=$3
     local version_dot=`echo ${version} | sed -e "s|\_|.|g"`
     local syscfg_install_file="sysconfig-${version}-setup.run"
     local syscfg_build_version=`echo ${version} | cut -d "_" -f 2`
     local syscfg_folder=sysconfig_`echo ${version} | cut -d "_" -f 1`
     
-    if [ "$version" == "1.20.999_143" ]; then
-        local syscfg_url="http://bangsdowebsvr01.india.ti.com/PROCESSOR_SDK_RTOS_AUTOMOTIVE/swdownloads/mcu_plus_sdk"
+    if [ "$link_type" == "internal" ]; then
+        local syscfg_url="http://tgdtestds06.toro.design.ti.com/sysconfig_releases/${version}/"
     else
         local syscfg_url="https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-nsUM6f7Vvb/${version_dot}"
     fi
