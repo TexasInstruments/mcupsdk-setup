@@ -326,7 +326,7 @@ install_dtc() {
     then
         echo "[device-tree-compiler ${version}]  Installing ..."
         pushd ${HOME} 1>/dev/null
-        sudo apt-get install device-tree-compiler
+        sudo apt-get -y install device-tree-compiler
         echo "[device-tree-compiler ${version}]  Done"
         popd 1>/dev/null
     fi
