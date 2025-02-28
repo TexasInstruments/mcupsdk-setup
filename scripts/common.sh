@@ -108,8 +108,13 @@ install_ccs() {
     fi
 
     echo "[ccs $1] Checking ..."
-    if [ ! -d "${install_dir}/${ccs_folder}" ]
+    if [ ! -e "${install_dir}/${ccs_folder}/ccs/utils/tiobj2bin/tiobj2bin" ]
     then
+        if [ -d "${install_dir}/${ccs_folder}" ]
+        then
+             echo " Cleanup partial installation ..."
+             rm -fr ${install_dir}/${ccs_folder}
+        fi
         echo " Installing dependent libraries ..."
         sudo apt -y install libc6:i386 libusb-0.1-4 libgconf-2-4 libncurses5 libpython2.7 libtinfo5 build-essential
 
