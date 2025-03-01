@@ -88,7 +88,7 @@ else
     fi
     install_gcc_aarch64 ${GCC_AARCH64_VERSION} ${gcc_aarch64_install_folder} ${gcc_aarch64_download_file} ${install_dir}
     install_syscfg  ${SYSCFG_VERSION} ${install_dir}
-    install_syscfg  "1.23.0_3981" ${install_dir} "internal"
+    install_syscfg  "1.23.0_4000" ${install_dir}
     if [ "$skip_nodejs" == "false" ]; then
         install_nodejs  ${NODEJS_VERSION} ${mcu_plus_sdk_folder}
     fi
