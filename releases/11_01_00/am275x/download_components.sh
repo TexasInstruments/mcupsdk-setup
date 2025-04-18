@@ -67,8 +67,6 @@ source ${BASE_DIR}/scripts/common.sh
 
 gcc_aarch64_install_folder="gcc-arm-${GCC_AARCH64_VERSION}-x86_64-aarch64-none-elf"
 gcc_aarch64_download_file="gcc-arm-${GCC_AARCH64_VERSION}-x86_64-aarch64-none-elf.tar.xz"
-gcc_arm_install_folder="gcc-arm-none-eabi-${GCC_ARM_VERSION}"
-gcc_arm_download_file="gcc-arm-none-eabi-${GCC_ARM_VERSION}-linux.tar.bz2"
 
 if [ "$install_win_package_on_linux" == "true" ]; then
     echo "Installing windows packages on linux machine...."
@@ -88,10 +86,7 @@ else
         install_ccs     ${CCS_VERSION} ${install_dir}
     fi
     install_clang   ${CGT_TI_ARM_CLANG_VERSION} ${clang_url_folder} ${clang_install_folder} ${clang_install_file} ${install_dir}
-    install_gcc_aarch64 ${GCC_AARCH64_VERSION} ${gcc_aarch64_install_folder} ${gcc_aarch64_download_file} ${install_dir}
-    install_gcc_arm     ${GCC_ARM_VERSION}     ${gcc_arm_install_folder}     ${gcc_arm_download_file}     ${install_dir} ${GCC_ARM_VERSION_FOLDER}
     install_syscfg  ${SYSCFG_VERSION} ${install_dir}
-    install_syscfg  "1.22.0_3893" ${install_dir}
     install_c7000_cgt ${C7000_CGT_VERSION} ${install_dir} ${c7000_internal_link}
     if [ "$skip_nodejs" == "false" ]; then
         install_nodejs  ${NODEJS_VERSION} ${mcu_plus_sdk_folder}

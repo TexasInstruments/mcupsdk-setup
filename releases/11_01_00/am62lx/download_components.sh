@@ -67,8 +67,6 @@ source ${BASE_DIR}/scripts/common.sh
 
 gcc_aarch64_install_folder="gcc-arm-${GCC_AARCH64_VERSION}-x86_64-aarch64-none-elf"
 gcc_aarch64_download_file="gcc-arm-${GCC_AARCH64_VERSION}-x86_64-aarch64-none-elf.tar.xz"
-gcc_arm_install_folder="gcc-arm-none-eabi-${GCC_ARM_VERSION}"
-gcc_arm_download_file="gcc-arm-none-eabi-${GCC_ARM_VERSION}-linux.tar.bz2"
 
 if [ "$install_win_package_on_linux" == "true" ]; then
     echo "Installing windows packages on linux machine...."
@@ -85,11 +83,9 @@ if [ "${OS}" = "Windows_NT" ]; then
 else
     if [ "$skip_ccs" == "false" ]; then
         install_ccs     ${CCS_VERSION} ${install_dir}
-        install_ccs     "20.1.0.00006" ${install_dir}
     fi
     install_gcc_aarch64 ${GCC_AARCH64_VERSION} ${gcc_aarch64_install_folder} ${gcc_aarch64_download_file} ${install_dir}
-    #install_syscfg  ${SYSCFG_VERSION} ${install_dir}
-    install_syscfg  "1.23.0_4000" ${install_dir}
+    install_syscfg  ${SYSCFG_VERSION} ${install_dir}
     if [ "$skip_nodejs" == "false" ]; then
         install_nodejs  ${NODEJS_VERSION} ${mcu_plus_sdk_folder}
     fi
