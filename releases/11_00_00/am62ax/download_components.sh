@@ -91,6 +91,7 @@ else
     install_gcc_arm     ${GCC_ARM_VERSION}     ${gcc_arm_install_folder}     ${gcc_arm_download_file}     ${install_dir} ${GCC_ARM_VERSION_FOLDER}
     install_syscfg  ${SYSCFG_VERSION} ${install_dir}
     install_c7000_cgt ${C7000_CGT_VERSION} ${install_dir} ${c7000_internal_link}
+    install_c7000_cgt "5.0.0.LTS" ${install_dir} ${c7000_internal_link}
     if [ "$skip_nodejs" == "false" ]; then
         install_nodejs  ${NODEJS_VERSION} ${mcu_plus_sdk_folder}
     fi
