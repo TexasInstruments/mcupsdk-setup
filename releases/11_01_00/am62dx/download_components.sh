@@ -95,6 +95,14 @@ else
     if [ "$skip_doxygen" == "false" ]; then
         install_doxygen ${DOXYGEN_VERSION}
     fi
+
+    install_tisp ${TISP_VERSION} ${mcu_plus_sdk_folder} "C7504"
+    install_dsplib ${DSPLIB_VERSION} ${mcu_plus_sdk_folder} "C7504"
+    install_fftlib ${FFTLIB_VERSION} ${mcu_plus_sdk_folder} "C7504"
+    install_vxlib ${VXLIB_VERSION} ${mcu_plus_sdk_folder} "C7504"
+    install_audiolib ${AUDIOLIB_VERSION} ${mcu_plus_sdk_folder} "C7504"
+    install_mathlib ${MATHLIB_VERSION} ${mcu_plus_sdk_folder} "C7504"
+        
     ccs_discover_tools  ${CCS_VERSION} ${install_dir}
 fi
 

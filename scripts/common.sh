@@ -337,6 +337,117 @@ install_dtc() {
     fi
 }
 
+install_dsplib() {
+    local version=$1
+    local install_dir=$2
+    local c7x_variant=$3
+
+    version_underscore=${version//./_}
+
+    local lib_url=https://software-dl.ti.com/mcu-plus-sdk/esd/common/xlib/dsplib/${version}/dsplib_src_${c7x_variant}_${version_underscore}.tar.gz
+
+    echo "[DSPLIB $1] Downloading ..."
+    wget -q --no-check-certificate $lib_url
+    file_basename=`basename $lib_url`
+    tar xzf $file_basename -C $install_dir
+    rm -f $file_basename
+
+    echo "[DSPLIB $1] Done ..."
+
+}
+
+install_fftlib() {
+    local version=$1
+    local install_dir=$2
+    local c7x_variant=$3
+
+    version_underscore=${version//./_}
+
+    local lib_url=https://software-dl.ti.com/mcu-plus-sdk/esd/common/xlib/fftlib/${version}/fftlib_src_${c7x_variant}_${version_underscore}.tar.gz
+
+    echo "[FFTLIB $1] Downloading ..."
+    wget -q --no-check-certificate $lib_url
+    file_basename=`basename $lib_url`
+    tar xzf $file_basename -C $install_dir
+    rm -f $file_basename
+
+    echo "[FFTLIB $1] Done ..."
+
+}
+
+install_audiolib() {
+    local version=$1
+    local install_dir=$2
+    local c7x_variant=$3
+
+    version_underscore=${version//./_}
+
+    local lib_url=https://software-dl.ti.com/mcu-plus-sdk/esd/common/xlib/audiolib/${version}/audiolib_src_${c7x_variant}_${version_underscore}.tar.gz
+
+    echo "[AUDIOLIB $1] Downloading ..."
+    wget -q --no-check-certificate $lib_url
+    file_basename=`basename $lib_url`
+    tar xzf $file_basename -C $install_dir
+    rm -f $file_basename
+
+    echo "[AUDIOLIB $1] Done ..."
+
+}
+
+install_mathlib() {
+    local version=$1
+    local install_dir=$2
+    local c7x_variant=$3
+
+    version_underscore=${version//./_}
+
+    local lib_url=https://software-dl.ti.com/mcu-plus-sdk/esd/common/xlib/mathlib/${version}/mathlib_src_${c7x_variant}_${version_underscore}.tar.gz
+
+    echo "[MATHLIB $1] Downloading ..."
+    wget -q --no-check-certificate $lib_url
+    file_basename=`basename $lib_url`
+    tar xzf $file_basename -C $install_dir
+    rm -f $file_basename
+
+    echo "[MATHLIB $1] Done ..."
+
+}
+install_vxlib() {
+    local version=$1
+    local install_dir=$2
+    local c7x_variant=$3
+
+    version_underscore=${version//./_}
+
+    local lib_url=https://software-dl.ti.com/mcu-plus-sdk/esd/common/xlib/vxlib/${version}/vxlib_src_${c7x_variant}_${version_underscore}.tar.gz
+
+    echo "[VXLIB $1] Downloading ..."
+    wget -q --no-check-certificate $lib_url
+    file_basename=`basename $lib_url`
+    tar xzf $file_basename -C $install_dir
+    rm -f $file_basename
+
+    echo "[VXLIB $1] Done ..."
+
+}
+install_tisp() {
+    local version=$1
+    local install_dir=$2
+    local c7x_variant=$3
+
+    version_underscore=${version//./_}
+
+    local lib_url=https://software-dl.ti.com/mcu-plus-sdk/esd/common/xlib/tisp/${version}/tisp_src_${c7x_variant}_${version_underscore}.tar.gz
+
+    echo "[TISP $1] Downloading ..."
+    wget -q --no-check-certificate $lib_url
+    file_basename=`basename $lib_url`
+    tar xzf $file_basename -C $install_dir
+    rm -f $file_basename
+
+    echo "[TISP $1] Done ..."
+
+}
 #
 # This function is used to replace the tag/reference in a repo manifest file
 #
