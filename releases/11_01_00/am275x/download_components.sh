@@ -95,12 +95,12 @@ else
         install_doxygen ${DOXYGEN_VERSION}
     fi
 
-    install_tisp ${TISP_VERSION} ${mcu_plus_sdk_folder} "C7524"
-    install_dsplib ${DSPLIB_VERSION} ${mcu_plus_sdk_folder} "C7524"
-    install_fftlib ${FFTLIB_VERSION} ${mcu_plus_sdk_folder} "C7524"
-    install_vxlib ${VXLIB_VERSION} ${mcu_plus_sdk_folder} "C7524"
-    install_audiolib ${AUDIOLIB_VERSION} ${mcu_plus_sdk_folder} "C7524"
-    install_mathlib ${MATHLIB_VERSION} ${mcu_plus_sdk_folder} "C7524"
+    install_tisp ${TISP_VERSION} ${mcu_plus_sdk_folder}/source "C7524"
+    install_dsplib ${DSPLIB_VERSION} ${mcu_plus_sdk_folder}/source "C7524"
+    install_fftlib ${FFTLIB_VERSION} ${mcu_plus_sdk_folder}/source "C7524"
+    install_vxlib ${VXLIB_VERSION} ${mcu_plus_sdk_folder}/source "C7524"
+    install_audiolib ${AUDIOLIB_VERSION} ${mcu_plus_sdk_folder}/source "C7524"
+    install_mathlib ${MATHLIB_VERSION} ${mcu_plus_sdk_folder}/source "C7524"
 
     ccs_discover_tools  ${CCS_VERSION} ${install_dir}
 fi
