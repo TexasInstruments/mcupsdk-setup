@@ -97,10 +97,10 @@ install_ccs() {
     local ccs_version_short=`echo ${ccs_version} | cut -d "." -f -3 | sed -e "s|\.|_|g"`
     local ccs_version_short_dot=`echo ${ccs_version_short} | sed -e "s|\_|.|g"`
     local ccs_folder=ccs`echo ${ccs_version} | cut -d "." -f -3 | sed -e "s|\.||g"`
-    local ccs_install_file="CCS${ccs_version}_linux-x64.tar.gz"
+    local ccs_install_file="CCS_${ccs_version}_linux.zip"
     local ccs_url="https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-J1VdearkvK/${ccs_version_short_dot}"
 
-    local ccs_untar_folder=`echo ${ccs_install_file} | sed -e "s|\.tar\.gz||g"`
+    local ccs_untar_folder=`echo ${ccs_install_file} | sed -e "s|\.zip||g"`
 
     echo "[ccs $1] Checking ..."
     if [ ! -d "${install_dir}/${ccs_folder}" ]
@@ -111,7 +111,7 @@ install_ccs() {
         echo " Installing ${ccs_install_file} to ${install_dir} folder..."
         wget_download ${ccs_folder} ${ccs_install_file} ${ccs_url}
         mkdir -p "${install_dir}"
-        tar xf ${ccs_install_file} -C "${install_dir}"
+        unzip -q ${ccs_install_file} -d "${install_dir}"
         echo "[${ccs_folder}] Installing ..."
         ${install_dir}/${ccs_untar_folder}/ccs_setup_${ccs_version}.run --mode unattended --prefix "${install_dir}/${ccs_folder}"
 
