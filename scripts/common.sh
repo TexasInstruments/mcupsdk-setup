@@ -349,8 +349,13 @@ install_dsplib() {
     echo "[DSPLIB $1] Downloading ..."
     wget -q --no-check-certificate $lib_url
     file_basename=`basename $lib_url`
-    tar xzf $file_basename -C $install_dir
-    rm -f $file_basename
+
+    if [ -e $file_basename ]; then
+        tar xzf $file_basename -C $install_dir
+        rm -f $file_basename
+    else 
+        echo "Download failed"
+    fi
 
     echo "[DSPLIB $1] Done ..."
 
@@ -368,8 +373,12 @@ install_fftlib() {
     echo "[FFTLIB $1] Downloading ..."
     wget -q --no-check-certificate $lib_url
     file_basename=`basename $lib_url`
-    tar xzf $file_basename -C $install_dir
-    rm -f $file_basename
+    if [ -e $file_basename ]; then
+        tar xzf $file_basename -C $install_dir
+        rm -f $file_basename
+    else 
+        echo "Download failed"
+    fi
 
     echo "[FFTLIB $1] Done ..."
 
@@ -387,8 +396,12 @@ install_audiolib() {
     echo "[AUDIOLIB $1] Downloading ..."
     wget -q --no-check-certificate $lib_url
     file_basename=`basename $lib_url`
-    tar xzf $file_basename -C $install_dir
-    rm -f $file_basename
+    if [ -e $file_basename ]; then
+        tar xzf $file_basename -C $install_dir
+        rm -f $file_basename
+    else 
+        echo "Download failed"
+    fi
 
     echo "[AUDIOLIB $1] Done ..."
 
@@ -406,8 +419,12 @@ install_mathlib() {
     echo "[MATHLIB $1] Downloading ..."
     wget -q --no-check-certificate $lib_url
     file_basename=`basename $lib_url`
-    tar xzf $file_basename -C $install_dir
-    rm -f $file_basename
+    if [ -e $file_basename ]; then
+        tar xzf $file_basename -C $install_dir
+        rm -f $file_basename
+    else 
+        echo "Download failed"
+    fi
 
     echo "[MATHLIB $1] Done ..."
 
@@ -424,8 +441,12 @@ install_vxlib() {
     echo "[VXLIB $1] Downloading ..."
     wget -q --no-check-certificate $lib_url
     file_basename=`basename $lib_url`
-    tar xzf $file_basename -C $install_dir
-    rm -f $file_basename
+    if [ -e $file_basename ]; then
+        tar xzf $file_basename -C $install_dir
+        rm -f $file_basename
+    else 
+        echo "Download failed"
+    fi
 
     echo "[VXLIB $1] Done ..."
 
@@ -442,8 +463,12 @@ install_tisp() {
     echo "[TISP $1] Downloading ..."
     wget -q --no-check-certificate $lib_url
     file_basename=`basename $lib_url`
-    tar xzf $file_basename -C $install_dir
-    rm -f $file_basename
+    if [ -e $file_basename ]; then
+        tar xzf $file_basename -C $install_dir
+        rm -f $file_basename
+    else 
+        echo "Download failed"
+    fi
 
     echo "[TISP $1] Done ..."
 
