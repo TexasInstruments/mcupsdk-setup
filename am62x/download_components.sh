@@ -59,12 +59,12 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 product_family="am62x"
 THIS_DIR=$(dirname $(realpath $0))
 BASE_DIR=$(realpath ${THIS_DIR}/..)
-script=${BASE_DIR}/releases/${release_version}/${product_family}/download_components.sh
 pushd ${BASE_DIR}/releases
 
 release_version=`ls -d * | sort -V | tail -1`
 
 popd
+script=${BASE_DIR}/releases/${release_version}/${product_family}/download_components.sh
 #Reuse current release version download script
 echo "Invoking ${script}"
 ${script} --mcu_plus_sdk_folder="${mcu_plus_sdk_folder}" --install_dir="${install_dir}" --skip_nodejs="${skip_nodejs}" --skip_doxygen="${skip_doxygen}" --skip_ccs="${skip_ccs}" --skip_dtc="${skip_dtc}" --product_family="${product_family}"
