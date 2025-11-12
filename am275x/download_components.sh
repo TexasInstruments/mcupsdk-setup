@@ -50,10 +50,14 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 : ${skip_doxygen:="false"}
 : ${skip_ccs:="false"}
 
-release_version=11_01_00
 product_family="am275x"
 THIS_DIR=$(dirname $(realpath $0))
 BASE_DIR=$(realpath ${THIS_DIR}/..)
+pushd ${BASE_DIR}/releases
+
+release_version=`ls -d * | sort -V | tail -1`
+
+popd
 script=${BASE_DIR}/releases/${release_version}/${product_family}/download_components.sh
 
 #Reuse current release version download script
