@@ -493,6 +493,25 @@ tag_replace() {
     fi
 }
 
+west_tag_replace() {
+    local manifest_file="$1"
+    local project_name="$2"
+    local new_revision="$3"
+
+    if [ ! -f "${manifest_file}" ]; then
+        return 0
+    fi
+    if [ -z "${project_name}" ] || [ -z "${new_revision}" ]; then
+        return 0
+    fi
+
+    if command -v perl >/dev/null 2>&1; then
+        esc_rev_for_perl=$(printf '%s' "${new_revision}" | sed -e 's/\\/\\\\/g' -e 's/\//\\\//g')
+        perl -0777 -i -pe "s/(^[ \t]*-[ \t]*name:[ \t]*\Q${project_name}\E\b.*?^[ \t]*revision:[ \t]*)(['\"]?)[^\r\n]+(\\2)/\1${esc_rev_for_perl}/gms" "${manifest_file}"
+        return
+    fi
+}
+
 #
 # This function is used to print the time difference
 #
