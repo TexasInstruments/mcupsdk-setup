@@ -197,6 +197,8 @@ install_nodejs() {
         export PATH=~/.nvm/versions/node/v${version}/bin:$PATH
         export PATH=~/node-v${version}/bin:$PATH
     fi
+    
+    echo "    Install node eslint package"
     npm install eslint
     echo "[nodejs ${version}] Done "
 
