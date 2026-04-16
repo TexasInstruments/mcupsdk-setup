@@ -93,6 +93,7 @@ if [ "${OS}" = "Windows_NT" ]; then
     echo "Installing windows packages"
     #TODO
 else
+    pip3 install pyserial xmodem tqdm pyelftools construct
     if [ "$skip_ccs" == "false" ]; then
         install_ccs         ${CCS_VERSION} ${install_dir}
         patch_ccs_j722s     ${CCS_VERSION} ${install_dir}
