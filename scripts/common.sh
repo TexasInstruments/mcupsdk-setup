@@ -64,11 +64,7 @@ install_c7000_cgt()
     if [ "$internal_link" == "true" ]; then
         local c7000_url="http://syntaxerror.dal.design.ti.com/release/releases/c70/rel${C7000_version_underscore}/build/install/"
     else
-        if [ "$(printf '%s\n' "5.0.2" "$c7000_version" | sort -V | tail -n1)" = "$c7000_version" ]; then
-            local c7000_url="https://dr-download.ti.com/software-development/ide,-configuration,-compiler-or-debugger/MD-707zYe3Rik/${c7000_version}"
-        else
-            local c7000_url="https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-707zYe3Rik/${c7000_version}"
-        fi
+        local c7000_url="https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-707zYe3Rik/${c7000_version}"
     fi
 
     echo "[c7000 $1] Checking ..."
