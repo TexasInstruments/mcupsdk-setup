@@ -475,6 +475,38 @@ install_tisp() {
     echo "[TISP $1] Done ..."
 
 }
+
+install_tvm() {
+    local version=$1
+    local install_dir=$2
+    local c7x_variant=$3
+
+    local tvm_dir="${install_dir}/tvm"
+    local tvm_wheel_basename="tvm-${version}-linux_x86_64.whl"
+    local tvm_wheel_dist_info="tvm-${version}.dist-info"
+
+    echo "[TVM $1] Checking ..."
+    if [ ! -d "${tvm_dir}" ]; then
+        echo "[TVM $1] Downloading ..."
+        mkdir -p "${install_dir}"
+        pushd ${install_dir} 1>/dev/null
+        wget -q -O tvm.whl https://software-dl.ti.com/mctools/esd/tvm/c7x/am62d/12_1/${tvm_wheel_basename}
+        file_basename="tvm.whl"
+
+        if [ -e $file_basename ]; then
+            unzip -q $file_basename
+            rm -f $file_basename
+            rm -rf ${tvm_wheel_dist_info}
+            echo "[TVM $1] Done ..."
+        else
+            echo "Download failed"
+        fi
+        popd 1>/dev/null
+    else
+        echo "[TVM $1] Already exists, skipping ..."
+    fi
+}
+
 #
 # This function is used to replace the tag/reference in a repo manifest file
 #

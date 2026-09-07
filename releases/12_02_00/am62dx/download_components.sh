@@ -96,7 +96,7 @@ else
     if [ "$skip_doxygen" == "false" ]; then
         install_doxygen ${DOXYGEN_VERSION}
     fi
-        
+    install_tvm ${TVM_VERSION} ${mcu_plus_sdk_folder}/source "C7504"
     ccs_discover_tools  ${CCS_VERSION} ${install_dir}
 fi
 
