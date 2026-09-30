@@ -61,11 +61,7 @@ install_c7000_cgt()
     local c7000_filename=ti_cgt_c7000_${c7000_version}_linux-x64_installer.bin
     local C7000_version_underscore=`echo ${c7000_version} | sed  's/\./_/g'`
 
-    if [ "$internal_link" == "true" ]; then
-        local c7000_url="http://syntaxerror.dal.design.ti.com/release/releases/c70/rel${C7000_version_underscore}/build/install/"
-    else
-        local c7000_url="https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-707zYe3Rik/${c7000_version}"
-    fi
+    local c7000_url="http://syntaxerror.dal.design.ti.com/release/releases/c70/rel${C7000_version_underscore}/build/install/"
 
     echo "[c7000 $1] Checking ..."
     if [ -d "${install_dir}/ti-cgt-c7000_${c7000_version}" ]
@@ -73,7 +69,7 @@ install_c7000_cgt()
         echo "ti-cgt-c7000_${c7000_version} is already installed on ${install_dir}"
     else
         echo "Installing ti-cgt-c7000_${c7000_version}"
-        wget -q ${c7000_url}/${c7000_filename}
+        wget --no-proxy -q ${c7000_url}/${c7000_filename}
         chmod +x $c7000_filename
         ./${c7000_filename} --mode unattended --installdir $install_dir --prefix $install_dir
     fi
