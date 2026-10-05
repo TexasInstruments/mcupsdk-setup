@@ -307,6 +307,26 @@ install_gcc_arm() {
     echo
 }
 
+install_gcc_arm_gnu() {
+    local version=$1
+    local gcc_install_folder=$2
+    local gcc_download_file=$3
+    local install_dir=$4
+    local gcc_url="https://gitlab.arm.com/api/v4/projects/tooling%2Fgnu-toolchains-for-arm/packages/generic/gnu-toolchain/${version}"
+
+    echo "[arm-gnu-toolchain ${version}] Checking ..."
+
+    if [ ! -d "${install_dir}"/${gcc_install_folder} ]
+    then
+        wget_download ${gcc_install_folder} ${gcc_download_file} ${gcc_url}
+        tar -C ${install_dir} -xf ${gcc_download_file}
+
+        #Clean-up
+        rm ${gcc_download_file}
+    fi
+    echo
+}
+
 install_doxygen() {
     local version=$1
     local version_underscore=`echo ${version} | sed -e "s|\.|_|g"`

@@ -68,14 +68,13 @@ source ${BASE_DIR}/scripts/common.sh
 gcc_aarch64_install_folder="gcc-arm-${GCC_AARCH64_VERSION}-x86_64-aarch64-none-elf"
 gcc_aarch64_download_file="gcc-arm-${GCC_AARCH64_VERSION}-x86_64-aarch64-none-elf.tar.xz"
 
+gcc_arm_install_folder="arm-gnu-toolchain-${GCC_ARM_VERSION}-x86_64-arm-none-eabi"
+gcc_arm_download_file="arm-gnu-toolchain-${GCC_ARM_VERSION}-x86_64-arm-none-eabi.tar.xz"
+
 if [ "$install_win_package_on_linux" == "true" ]; then
     echo "Installing windows packages on linux machine...."
     #Nothing yet!!
 fi
-
-clang_url_folder="${CGT_TI_ARM_CLANG_VERSION}.${CGT_TI_ARM_CLANG_VERSION_SUFFIX}"
-clang_install_folder="ti-cgt-armllvm_${CGT_TI_ARM_CLANG_VERSION}.${CGT_TI_ARM_CLANG_VERSION_SUFFIX}"
-clang_install_file="ti_cgt_armllvm_${CGT_TI_ARM_CLANG_VERSION}.${CGT_TI_ARM_CLANG_VERSION_SUFFIX}_linux-x64_installer.bin"
 
 if [ "${OS}" = "Windows_NT" ]; then
     echo "Installing windows packages"
@@ -85,7 +84,7 @@ else
     if [ "$skip_ccs" == "false" ]; then
         install_ccs     ${CCS_VERSION} ${install_dir}
     fi
-    install_clang   ${CGT_TI_ARM_CLANG_VERSION} ${clang_url_folder} ${clang_install_folder} ${clang_install_file} ${install_dir}
+    install_gcc_arm_gnu ${GCC_ARM_VERSION} ${gcc_arm_install_folder} ${gcc_arm_download_file} ${install_dir}
     install_gcc_aarch64 ${GCC_AARCH64_VERSION} ${gcc_aarch64_install_folder} ${gcc_aarch64_download_file} ${install_dir}
     install_syscfg  ${SYSCFG_VERSION} ${install_dir}
     if [ "$skip_nodejs" == "false" ]; then
@@ -96,7 +95,7 @@ else
     fi
     if [ "$skip_dtc" == "false" ]; then
         install_dtc
-    fi 
+    fi
     ccs_discover_tools  ${CCS_VERSION} ${install_dir}
 fi
 
