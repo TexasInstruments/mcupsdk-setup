@@ -502,24 +502,25 @@ install_tvm() {
     local c7x_variant=$3
 
     local tvm_dir="${install_dir}/tvm"
-    local tvm_wheel_basename="tvm-${version}-linux_x86_64.whl"
-    local tvm_wheel_dist_info="tvm-${version}.dist-info"
+    local tvm_wheel_basename="ti_tvm_am62x-${version}-linux_x86_64.whl"
 
     echo "[TVM $1] Checking ..."
     if [ ! -d "${tvm_dir}" ]; then
         echo "[TVM $1] Downloading ..."
         mkdir -p "${install_dir}"
         pushd ${install_dir} 1>/dev/null
-        wget -q -O tvm.whl https://software-dl.ti.com/mctools/esd/tvm/c7x/am62d/12_1/${tvm_wheel_basename}
+        wget -q -O tvm.whl https://software-dl.ti.com/mctools/esd/tvm/c7x/am62d/12_2/${tvm_wheel_basename}
         file_basename="tvm.whl"
 
-        if [ -e $file_basename ]; then
-            unzip -q $file_basename
+        if unzip -q $file_basename 2>/dev/null; then
             rm -f $file_basename
-            rm -rf ${tvm_wheel_dist_info}
+            rm -rf ti_tvm_am62x-*.dist-info
             echo "[TVM $1] Done ..."
         else
-            echo "Download failed"
+            rm -f $file_basename
+            echo "[TVM $1] Download or extraction failed"
+            popd 1>/dev/null
+            return 1
         fi
         popd 1>/dev/null
     else
