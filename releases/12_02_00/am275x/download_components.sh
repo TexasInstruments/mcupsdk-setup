@@ -82,6 +82,8 @@ if [ "${OS}" = "Windows_NT" ]; then
     #TODO
 else
     pip3 install pyserial xmodem tqdm pyelftools construct
+    # Sphinx extensions needed to build the XLIB user guides
+    pip3 install sphinx-design==0.6.1 sphinx-copybutton==0.5.2 exhale==0.3.7 sphinx-immaterial
     if [ "$skip_ccs" == "false" ]; then
         install_ccs     ${CCS_VERSION} ${install_dir}
     fi
